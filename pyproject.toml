@@ -1,0 +1,51 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "genlesson"
+version = "0.1.0"
+description = "Turn a lesson file into a reviewable, resumable poster-generation run."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Proprietary" }
+authors = [{ name = "Wonk" }]
+dependencies = [
+    "pymupdf>=1.24.0",
+    "python-docx>=1.1.2",
+    "pydantic>=2.7.0",
+    "openai>=1.40.0",
+    "pillow>=10.0.0",
+    # PP-OCR DB text detection (boxes only, language-agnostic). Used to keep the
+    # mascot and its speech bubble off rendered poster text.
+    "rapidocr>=3.4.0",
+]
+
+[project.optional-dependencies]
+tracing = [
+    "langfuse==5.2.0",
+]
+graph = [
+    "langgraph==1.2.20",
+]
+dev = [
+    "pytest>=8.2.0",
+    "fonttools>=4.50.0",
+]
+
+[project.scripts]
+genlesson = "genlesson.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/genlesson"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+filterwarnings = [
+    "error::DeprecationWarning:genlesson.*",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"

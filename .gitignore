@@ -1,0 +1,23 @@
+# Environments
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Generated runs contain lesson material and rendered pages.
+runs/
+experiments/runs/
+
+# Local credentials / overrides
+.env
+.env.*
+!.env.example
+.uv-cache/
+.uv-tools/
+dist/
+build/
+*.egg-info/
+
+# Final posters and sidecars.
+outputs/

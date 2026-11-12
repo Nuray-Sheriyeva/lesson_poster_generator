@@ -1,0 +1,70 @@
+[planner]
+# Anthropic/DeepSeek: change provider, set the provider's model explicitly, and
+# adjust max_context for that model (or pass --planner-context).
+provider = "openai"
+model = "gpt-6-luna"
+max_context = 1050000
+
+[image]
+provider = "openai"
+model = "gpt-image-2"
+
+[vision]
+provider = "openai"
+model = "gpt-6-luna"
+
+[verification]
+provider = "openai"
+# Leave empty to reuse the planner when it supports vision.
+model = ""
+
+[tracing]
+# "auto" traces only when LANGFUSE_PUBLIC_KEY and LANGFUSE_SECRET_KEY are set.
+# Use "on" or "off" to override that default; CLI --tracing/--no-tracing wins.
+# If gpt-6-luna is absent from Langfuse's model table, add a custom model
+# definition there so its token usage is priced.
+enabled = "auto"
+environment = "local"
+max_input_chars = 8000
+mask_paths = true
+
+# Optional per-image prices in USD, keyed by image model. Empty by default.
+[tracing.pricing.image]
+
+[mascot]
+# The mascot and its question bubble are composited after image generation.
+# Set enabled = false to save posters exactly as the image model returned them.
+enabled = true
+assets_dir = "assets/mascot"
+size_ratio = 0.09
+fill = "#FFFFFF"
+outline = "#6360FF"
+text_color = "#3B0764"
+outline_width = 4
+font_path = "assets/fonts/NotoSans-Regular.ttf"
+min_font_ratio = 0.016
+max_font_ratio = 0.03
+bubble_max_width_ratio = 0.42
+# Fraction of the short side. Values greater than 1 are treated as pixels.
+edge_margin = 0.025
+question_max_chars = 140
+avoid_repeat = false
+busyness_threshold = 0.08
+
+[defaults]
+formats = ["portrait"]
+review = "off"
+review_on_conflict = false
+max_details = 8
+max_retries = 2
+out_dir = "outputs"
+
+[image.sizes.gpt-image-2]
+portrait = "1024x1536"
+landscape = "1536x1024"
+square = "1024x1024"
+
+[image.sizes.gpt-image-1]
+portrait = "1024x1536"
+landscape = "1536x1024"
+square = "1024x1024"

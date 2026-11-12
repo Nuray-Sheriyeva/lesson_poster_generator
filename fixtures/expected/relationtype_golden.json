@@ -1,0 +1,10 @@
+{
+  "name": "relationtype",
+  "input": "../input/relationtype.pdf",
+  "reference": "relationtype_reference.png",
+  "approved_spec": "relationtype_approved_spec.json",
+  "language": "kk",
+  "format": "landscape",
+  "reference_size": [1536, 1024],
+  "notes": "First real golden lesson. The approved spec covers seven biotic interaction types and records one source conflict about +/- signs. Review the generated poster visually against the reference; Stage 7 checks text only."
+}
